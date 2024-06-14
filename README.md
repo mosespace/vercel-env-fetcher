@@ -16,13 +16,7 @@ The `vercel-env-fetcher` package is a Node.js CLI utility designed to simplify t
 ### Usage Guide
 
 1. **Installation:**
-   Install the package globally to use it as a CLI tool:
-
-   ```bash
-   npm install -g vercel-env-fetcher
-   ```
-
-   Or just run install it this way
+   You can get the envs' interactively by running:
 
    ```bash
    npx vercel-env-fetcher
@@ -61,12 +55,6 @@ To generate a Vercel Access Token:
 - Copy the generated token value. This token will be used to authenticate API requests when fetching environment variables.
 
 ### 3. **Fetching Environment Variables:**
-
-Run the command fetch-env in your terminal:
-
-```bash
-npm run fetch-env
-```
 
 You will be prompted to enter the Project ID for the Vercel project from which you want to fetch environment variables.
 
