@@ -1,0 +1,40 @@
+{
+  "name": "vercel-env-fetcher",
+  "version": "1.0.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fetch-env": "tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vercel",
+    "environment",
+    "variables",
+    "fetch",
+    "dotenv",
+    "integration",
+    "automation",
+    "cli",
+    "nodejs",
+    "development",
+    "next-js",
+    "dotenv",
+    "env",
+    "retrieving .env file",
+    "vercel api",
+    "getting all .env files",
+    "environment",
+    "utility"
+  ],
+  "author": "@mosespace",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "typescript": "^5.4.5"
+  }
+}
