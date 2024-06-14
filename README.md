@@ -25,7 +25,7 @@ The `vercel-env-fetcher` package is a Node.js CLI utility designed to simplify t
    Or just run install it this way
 
    ```bash
-   npm install vercel-env-fetcher
+   npx vercel-env-fetcher
    ```
 
 ### 2. Setup:

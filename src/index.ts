@@ -1,17 +1,16 @@
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import dotenv from "dotenv";
-import readline from "readline";
+import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-interface VercelEnvVariable {
+export interface VercelEnvVariable {
   key: string;
   value: string;
 }
 
-const getEnvironmentVariables = async (
+export const getEnvironmentVariables = async (
   projectId: string,
   apiToken: string
 ): Promise<VercelEnvVariable[]> => {
@@ -23,7 +22,7 @@ const getEnvironmentVariables = async (
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
 
@@ -37,7 +36,7 @@ const getEnvironmentVariables = async (
       }
     } catch (error: any) {
       console.error(
-        "Error fetching environment variables:",
+        'Error fetching environment variables:',
         error.response ? error.response.data : error.message
       );
       process.exit(1);
@@ -47,15 +46,15 @@ const getEnvironmentVariables = async (
   return variables;
 };
 
-const mergeEnvVariables = (
+export const mergeEnvVariables = (
   existingContent: string,
   newVariables: VercelEnvVariable[]
 ): string => {
   const envMap = new Map<string, string>();
 
   // Parse existing .env content
-  existingContent.split("\n").forEach((line) => {
-    const [key, value] = line.split("=");
+  existingContent.split('\n').forEach((line) => {
+    const [key, value] = line.split('=');
     if (key) envMap.set(key, value);
   });
 
@@ -67,16 +66,16 @@ const mergeEnvVariables = (
   // Convert map back to .env format
   return Array.from(envMap)
     .map(([key, value]) => `${key}=${value}`)
-    .join("\n");
+    .join('\n');
 };
 
-const writeEnvFile = (
+export const writeEnvFile = (
   variables: VercelEnvVariable[],
   envFilePath: string
 ): void => {
-  let existingContent = "";
+  let existingContent = '';
   if (fs.existsSync(envFilePath)) {
-    existingContent = fs.readFileSync(envFilePath, { encoding: "utf8" });
+    existingContent = fs.readFileSync(envFilePath, { encoding: 'utf8' });
   }
 
   const mergedContent = mergeEnvVariables(existingContent, variables);
@@ -89,46 +88,7 @@ const writeEnvFile = (
       `
     );
   } catch (error) {
-    console.error("Error writing .env file:", error);
+    console.error('Error writing .env file:', error);
     process.exit(1);
   }
 };
-
-const promptForProjectId = (): Promise<string> => {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  return new Promise((resolve) => {
-    rl.question("Enter the project ID: ", (projectId) => {
-      rl.close();
-      resolve(projectId);
-    });
-  });
-};
-
-const promptForApiToken = (): Promise<string> => {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  return new Promise((resolve) => {
-    rl.question("Enter your Vercel API token: ", (apiToken) => {
-      rl.close();
-      resolve(apiToken);
-    });
-  });
-};
-
-const main = async (): Promise<void> => {
-  const projectId = await promptForProjectId();
-  const apiToken = await promptForApiToken();
-  const envVariables = await getEnvironmentVariables(projectId, apiToken);
-
-  const envFilePath = path.resolve(process.cwd(), ".env");
-  writeEnvFile(envVariables, envFilePath);
-};
-
-main();
