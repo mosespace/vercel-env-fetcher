@@ -1,6 +1,10 @@
 {
   "name": "vercel-env-fetcher",
   "version": "1.0.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mosespace/vercel-env-fetcher"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
