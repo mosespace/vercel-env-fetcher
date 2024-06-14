@@ -7,11 +7,6 @@ Detailed Explanation and Usage Guide for vercel-env-fetcher
 **Description:**
 The `vercel-env-fetcher` package is a Node.js CLI utility designed to simplify the management of environment variables within Vercel projects. It leverages the Vercel API to fetch environment variables dynamically based on a specified project ID and writes/updates the `.env` file. This automation saves time by eliminating the manual process of retrieving and configuring environment variables for local development or deployment environments.
 
-**Key Features:**
-
-- **Dynamic Fetching:** Retrieves environment variables from Vercel projects via the Vercel API.
-- **Automated Integration:** Writes fetched environment variables into `.env` file for seamless integration with local development setups.
-- **CLI Interface:** User-friendly command-line interface that prompts for only the project ID and handles API authentication using a Vercel Access Token.
 
 ### Usage Guide
 
@@ -69,6 +64,14 @@ The package will fetch the environment variables associated with the provided Pr
 ### 6. Integration:
 
 Use the generated .env file in your local development environment to ensure consistency with the environment variables used in your Vercel deployments. This automates the process of syncing environment configurations between development and deployment environments.
+
+**Key Features:**
+
+- **Dynamic Fetching:** Retrieves environment variables from Vercel projects via the Vercel API.
+- **Automated Integration:** Writes fetched environment variables into `.env` file for seamless integration with local development setups.
+- **CLI Interface:** User-friendly command-line interface that prompts for only the project ID and handles API authentication using a Vercel Access Token.
+
+
 
 ## Note:
 
